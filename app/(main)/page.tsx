@@ -2,10 +2,10 @@ export default function Home() {
   return (
     <div>
       <div
-        className="bg-cover bg-no-repeat bg-center py-36"
+        className="bg-cover bg-no-repeat bg-center py-36  "
         style={{ backgroundImage: "url('assets/images/banner-bg.jpg')" }}
       >
-        <div className="container">
+        <div className="container max-w-7xl">
           <h1 className="text-6xl text-gray-800 font-medium mb-4 capitalize">
             best collection for <br /> home decoration
           </h1>

@@ -1,4 +1,4 @@
-import { Navbar } from "./_components/navbar";
+import Navbar from "@/components/layout/navbar";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = ({ children }: ProtectedLayoutProps) => {
   return (
-    <div className="h-full w-full flex flex-col gap-y-10 items-center justify-center ">
+    <div className="h-full w-full flex flex-col  ">
       <Navbar />
       {children}
     </div>
