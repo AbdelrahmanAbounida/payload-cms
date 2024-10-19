@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "../logo";
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -13,8 +12,10 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
 import { ShoppingCart } from "lucide-react";
+import Cart from "./cart";
+import { Button } from "@/components/ui/button";
+import Logo from "@/components/logo";
 {
   /** TODO:: Load from database  */
 }
@@ -132,12 +133,7 @@ const Navbar = () => {
           {/* <Link href={"/login"}>Create Account</Link> */}
           <Button variant={"secondary"}>Create Account</Button>
           {/** TODO Show user info */}
-          <Button variant={"outline"} size="icon" className="relative">
-            <ShoppingCart size={19} />
-            <div className="w-5 h-5 text-center flex text-[11px] items-center justify-center text-xs rounded-full absolute -top-2 -right-2 text-white bg-green-600">
-              1
-            </div>
-          </Button>
+          <Cart />
         </div>
       </div>
     </div>

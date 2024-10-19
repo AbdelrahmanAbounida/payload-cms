@@ -2,6 +2,7 @@
 
 import * as z from "zod";
 import { AuthError } from "next-auth";
+import bcrypt from "bcryptjs";
 
 import { db } from "@/lib/db";
 import { signIn } from "@/auth";
@@ -32,6 +33,13 @@ export const login = async (
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" };
+  }
+
+  // check password
+  const rightPass = await bcrypt.compare(password, existingUser.password);
+  console.log({ rightPass });
+  if (!rightPass) {
+    return { error: "Password is not correct" };
   }
 
   if (!existingUser.emailVerified) {

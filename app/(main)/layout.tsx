@@ -1,4 +1,4 @@
-import Navbar from "@/components/layout/navbar";
+import Navbar from "@/components/layout/navbar/navbar";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
