@@ -1,6 +1,12 @@
-import { CalendarClock, HandCoins, HandIcon, TruckIcon } from "lucide-react";
+"use client";
+import { trpc } from "@/trpc/client";
+import { CalendarClock, HandCoins, TruckIcon } from "lucide-react";
 
 export default function Home() {
+  const { data, error } = trpc.test.useQuery({
+    test: "asd",
+  });
+  console.log({ data, error });
   return (
     <div>
       <div

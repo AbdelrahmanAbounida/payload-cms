@@ -23,8 +23,8 @@ export const getPayloadClient = async ({
   initOptions,
   seed,
 }: Args = {}): Promise<Payload> => {
-  if (!process.env.DATABASE_URI) {
-    throw new Error("DATABASE_URI environment variable is missing");
+  if (!process.env.DATABASE_URL) {
+    throw new Error("DATABASE_URL environment variable is missing");
   }
   if (!process.env.PAYLOAD_SECRET) {
     throw new Error("PAYLOAD_SECRET environment variable is missing");

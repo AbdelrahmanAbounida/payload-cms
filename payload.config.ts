@@ -12,45 +12,28 @@ import Users from "./payload/collections/Users";
 //   return 'Exomerce'
 // }
 
-const mockModulePath = path.resolve(__dirname, "./emptyModuleMock.js");
-
 dotenv.config({
-  path: path.resolve(__dirname, "../../.env"),
+  path: path.resolve(__dirname, "./.env"),
 });
 
 export default buildConfig({
+  routes: {
+    api: "/api",
+    graphQL: "/gql",
+    graphQLPlayground: "/gql-playground",
+    admin: "/admin",
+  },
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
-    webpack: (config) => {
-      return {
-        ...config,
-        resolve: {
-          ...config.resolve,
-          alias: {
-            ...config.resolve?.alias,
-            dotenv: path.resolve(__dirname, "./dotenv.js"),
-            [path.resolve(
-              __dirname,
-              "collections/Products/hooks/beforeChange"
-            )]: mockModulePath,
-            [path.resolve(
-              __dirname,
-              "collections/Users/hooks/createStripeCustomer"
-            )]: mockModulePath,
-            [path.resolve(__dirname, "collections/Users/endpoints/customer")]:
-              mockModulePath,
-            [path.resolve(__dirname, "endpoints/create-payment-intent")]:
-              mockModulePath,
-            [path.resolve(__dirname, "endpoints/customers")]: mockModulePath,
-            [path.resolve(__dirname, "endpoints/products")]: mockModulePath,
-            [path.resolve(__dirname, "endpoints/seed")]: mockModulePath,
-            stripe: mockModulePath,
-            express: mockModulePath,
-          },
-        },
-      };
+    meta: {
+      titleSuffix: "- Exomerce",
+      favicon: "/favicon.ico",
+      // ogImage: ""
     },
+  },
+  rateLimit: {
+    max: 300, // default 500
   },
   editor: slateEditor({}),
   db: mongooseAdapter({
@@ -60,10 +43,13 @@ export default buildConfig({
   collections: [Users],
   globals: [],
   typescript: {
-    outputFile: path.resolve(__dirname, "payload-types.ts"),
+    outputFile: path.resolve(__dirname, "payload/payload-types.ts"),
   },
   graphQL: {
-    schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
+    schemaOutputFile: path.resolve(
+      __dirname,
+      "payload/generated-schema.graphql"
+    ),
   },
   cors: [
     "https://checkout.stripe.com",
